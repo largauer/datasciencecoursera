@@ -2,16 +2,16 @@
 
 ##Step 1--------------------------------
 ##Read in the train data - merge with train subject and activity
-data<-read.table("./getdata-projectfiles-UCI HAR Dataset/UCI HAR Dataset/train/X_train.txt", header=FALSE)
-activity<-read.table("./getdata-projectfiles-UCI HAR Dataset/UCI HAR Dataset/train/y_train.txt",header=FALSE)
-subject<-read.table("./getdata-projectfiles-UCI HAR Dataset/UCI HAR Dataset/train/subject_train.txt",header=FALSE)
+data<-read.table("./train/X_train.txt", header=FALSE)
+activity<-read.table("./train/y_train.txt",header=FALSE)
+subject<-read.table("./train/subject_train.txt",header=FALSE)
 
 train<-cbind(subject,activity,data)
 
 ##Read in the test data - merge with test subject and activity
-data<-read.table("./getdata-projectfiles-UCI HAR Dataset/UCI HAR Dataset/test/X_test.txt", header=FALSE)
-activity<-read.table("./getdata-projectfiles-UCI HAR Dataset/UCI HAR Dataset/test/y_test.txt",header=FALSE)
-subject<-read.table("./getdata-projectfiles-UCI HAR Dataset/UCI HAR Dataset/test/subject_test.txt",header=FALSE)
+data<-read.table("./test/X_test.txt", header=FALSE)
+activity<-read.table("./test/y_test.txt",header=FALSE)
+subject<-read.table("./test/subject_test.txt",header=FALSE)
 
 test<-cbind(subject,activity,data)
 
@@ -22,7 +22,7 @@ allData<-rbind(train,test)
 
 ##Step 2--------------------------------
 ##Give the columns names
-colnames<-read.table("./getdata-projectfiles-UCI HAR Dataset/UCI HAR Dataset/features.txt",header=FALSE,
+colnames<-read.table("./features.txt",header=FALSE,
                      stringsAsFactors=FALSE)
 colnames(allData)<-c("subject","activity", colnames[,2])
 
@@ -35,7 +35,7 @@ subData<-allData[,c("subject","activity",subNames)]
 
 ##Step 3 & 4--------------------------------
 ##Read in the activity labels
-labels<-read.table("./getdata-projectfiles-UCI HAR Dataset/UCI HAR Dataset/activity_labels.txt",header=FALSE)
+labels<-read.table("./activity_labels.txt",header=FALSE)
 colnames(labels)<-c("activityIndex","activityName")
 labels$activityName<-as.character(labels$activityName)
 
