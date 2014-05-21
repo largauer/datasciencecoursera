@@ -1,7 +1,7 @@
 CodeBook
 ========================================================
 
-This document describes the data, variables, and work perfromed to complete the course project for Getting and Cleaning Data.
+This document describes the data, variables, and work performed to complete the course project for Getting and Cleaning Data.
 
 The original data was broken apart into a test and training set. To create a comprehensive data set, it required merging three distinct data files for both the test set and training set.  The files for each set were as follows:
 
@@ -15,7 +15,13 @@ The original data was broken apart into a test and training set. To create a com
 - y_train.txt
 - subject_train.txt
 
-The first step that was taken was to bring all the data into R for both the test and training set.  This included the subject identifiers, the activity labels, and the actual data for the measured variables. This required the reading in of 3 files for the test set and 3 files for the training set.  Each of the files were read in separately using the read.table function and then combined, using cbind, to create a data frame for the test set, called test, and a data frame for the training set, called train.  Then the test and training set data was merged using rbind into one data frame called *allData*.
+#### Other files
+- features.txt
+- activity_labels.txt
+
+The first step that was taken was to bring all the data into R for both the test and training set.  This included the subject identifiers (subject_test.txt and subject_train.txt), the activity labels (activity_labels.txt), the columns names (features.txt), the actual data(X_test,X_train) and the activity indentifier for each row(y_test,y_train). This required the reading in of 3 files for the test set (X-test.txt,y_test.txt,subject_test.txt) and 3 files for the training set (X-train.txt,y_train.txt,subject_train.txt).  The data files in the sub folders 'Inertial Signals' was not used in this analysis.
+
+Each of the files were read in separately using the read.table function and then combined, using cbind, to create a data frame for the test set, called test, and a data frame for the training set, called train.  Then the test and training set data was merged using rbind into one data frame called *allData*.
 
 *colnames* was created by reading in the features.txt file and setting stringsAsFactors to false. The column names of the allData data frame were set to "subject", "activity", and then the second column of the colnames data frame.
 
@@ -33,7 +39,7 @@ To allow for easier calcuation of the means in the next step, *mergeData* was co
 tidy<-DT[,lapply(.SD,mean),by=list(activityName,subject)]
 ```
 
-Finally, the *tidy* data table was written out as a text file using commas as the delimiter.It was not written as a csv because the Coursera file upload did not allow for the csv format.
+Finally, the *tidy* data table was written out to the current working directory as a text file using commas as the delimiter.It was not written as a csv because the Coursera file upload did not allow for the csv format.
 
 
 
